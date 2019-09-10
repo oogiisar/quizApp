@@ -30,9 +30,9 @@ const STORE = [
         alt: 'population of Mongolia'
     },
     {
-        question: 'What is the Mongolian flag?',
-        answers: ['img/LebonanFlag.png', 'img/MongolianFlag.png', 'img/BhutanFlag.png', 'img/Flag_of_Angola.svg'],
-        correctAnswer: 'img/MongolianFlag.png', 
+        question: 'What color is the Mongolian flag?',
+        answers: ['Red, Green, Blue', 'Yellow, Pink', 'White, Red, Blue', 'Red, Blue, Yellow'],
+        correctAnswer: 'Red, Blue, Yellow', 
         image: 'img/MongolianFlag.png',
         alt: 'Mongolian flag'
     },
@@ -51,17 +51,18 @@ function renderQuizApp() {
         return `<form class="question_box">
             <fieldset> 
             <legend>${STORE[questionNum].question}</legend>
-            <ul class=answer>
+            <ul class="answer">
                 <li><input type="radio" name="answer" required value="${STORE[questionNum].answers[0]}">${STORE[questionNum].answers[0]}</li>
                 <li><input type="radio" name="answer" required value="${STORE[questionNum].answers[1]}">${STORE[questionNum].answers[1]}</li>
                 <li><input type="radio" name="answer" required value="${STORE[questionNum].answers[2]}">${STORE[questionNum].answers[2]}</li>
                 <li><input type="radio" name="answer" required value="${STORE[questionNum].answers[3]}">${STORE[questionNum].answers[3]}</li>
             </ul>
-            <input type=submit value=Submit class="button">
+            <input type=submit value=Submit class="button submit">
             </fieldset>
         </form>`
     } else {
         quizResults(); // not done yet
+            
     }
 } 
 
@@ -94,12 +95,10 @@ function startQuiz() {
 }
 
 function nextQuestion() {
-    $('.question_box').on('submit', '.next', function(event){
-        console.log("nextQuestion Ran")
-        questionNum++
-        event.preventDefault();
-        quizQuestion();
-    })
+    console.log("nextQuestion Ran")
+    questionNum++
+    quizQuestion();
+
 }
 
 function correctUpdate(answer) {
@@ -108,7 +107,7 @@ function correctUpdate(answer) {
     $('.quiz_box').html(
         `<form class="question_box">
             <fieldset> 
-            <legend>${STORE[questionNum].question}</legend>
+            <legend>You are correct!</legend>
             <!-- add <label></label> -->
 
             <ul class=answer>
@@ -119,28 +118,46 @@ function correctUpdate(answer) {
             </fieldset>
         </form>`
     );
-    nextQuestion();
+}
+
+function wrongUpdate(answer) {
+    console.log("wrongUpdate ran")
+    $('.question_box').remove();
+    $('.quiz_box').html(
+        `<form class="question_box">
+            <fieldset> 
+            <legend>Wrong! The correct answer</legend>
+            <!-- add <label></label> -->
+
+            <ul class=answer>
+                <li>${answer}</li>
+                <li><img class="correct_img" src=${STORE[questionNum].image} alt=${STORE[questionNum].alt}></li>
+            </ul>
+            <input type=submit value=Next class="button next">
+            </fieldset>
+        </form>`
+        
+    );
 }
 
 function checkQuestion() {
     //check quiz
-        $('.quiz_box').on('submit', function(event){
-            console.log("checkQuestion Ran")
-            event.preventDefault();
-            let selection = $('input:checked');
-            let answer  = selection.val();
-            let correctAnswer = `${STORE[questionNum].correctAnswer}`;
-            if (answer === correctAnswer) {
-                selection.parent().addClass('correct');
-                correctUpdate(answer);
-                incrementScore();
-            } else {
-                selection.parent().addClass('wrong');
-                //wrongUpdate(); need to do this
-            }
-    
-        })
-    }
+    $('.quiz_box').on('submit', function(event){
+        console.log("checkQuestion Ran")
+        event.preventDefault();
+        let selection = $('input:checked');
+        let answer  = selection.val();
+        let correctAnswer = `${STORE[questionNum].correctAnswer}`;
+        if (answer == undefined) {
+            nextQuestion();
+        } else if (answer === correctAnswer) {
+            correctUpdate(answer);
+            incrementScore();
+        } else {
+            wrongUpdate(correctAnswer); 
+        }
+    })
+}
 
 function quizResult() {
     if(score >=5) {
@@ -161,11 +178,11 @@ function quizResult() {
 }
 
 function quiz() {
-    renderQuizApp();
     startQuiz();
-    nextQuestion();
+    renderQuizApp();
     checkQuestion();
     quizResult();
 }
 $(quiz);
 
+// Update html code in renderQuizApp, correctUpdate, wrongUpdate
