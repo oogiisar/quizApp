@@ -1,25 +1,28 @@
 * {
     box-sizing: border-box;
+    border-radius: 1%;
+    margin: 0;
+    padding: 0;
 }
-
-main {
-    margin: auto;
+body{
+    font-family: 'roboto', sans-serif;
+    background: rgb(209, 211, 193);
 }
 
 header {
     text-align: center;    
 }
 header img {
-    margin: auto;
-    width: 350px
+    margin-top: 10px;
+    width: 200px;
 }
 .stats {
     text-align: center;
+    font-size: 18px;
 }
 .stats p {
     display: inline-block;
-    margin: auto;
-    padding: 30px;    
+    padding: 30px;  
 }
 .quiz_box {
     position: relative;
@@ -27,14 +30,17 @@ header img {
     margin: auto;
     width: 380px;
     height: 400px;
-    background-color: skyblue;
+    background-color: rgb(138, 150, 107);
 }
+
 .question_box {
     position: absolute;
     height: 250px;
     width: 300px;
     margin-top: 40px;
     margin-left: 40px;
+    margin-bottom: 15px;
+    background: rgb(209, 211, 193);
 }
 
 .start_img {
@@ -42,32 +48,135 @@ header img {
     width: 100%;
 }
 
-.answer {
-    height: 160px;
-    margin-top: 40px;
+.question_head {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.button {
-    position: relative;
-    margin-top: 40px;
+.result_text {
+    background-color: rgb(138, 150, 107); 
+    padding-bottom: 10px; 
+}
+
+.result_img {
+    height: 195px;
     width: 300px;
-    height: 50px;
-    -webkit-appearance: none;
-}
-
-.answer {
-    list-style-type: none;
-    text-align: left;
 }
 
 .correct_img {
     min-width: 100px;
     max-width: 200px;
-    max-height: 150px;
+    max-height: 130px;
 }
 
-.question_pic {
-    width: 75px;
-    vertical-align: middle;
-    padding: 5px;
+.answer_head {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
+
+fieldset {
+    position: absolute;
+    border: 0;
+    height: 250px;
+    width: 300px;
+}
+
+.answer {
+    display: block;
+    height: 0px;
+    margin-top: 40px;
+    text-align: left;
+    margin-left: 20px; 
+}
+
+.answer span{
+    padding-left: 10px;
+}
+
+.button {
+    position: relative;
+    margin-top: 30px;
+    width: 150px;
+    height: 50px;
+    background-color: rgb(2, 48, 27);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: rgb(82, 43, 29);
+}
+
+.submit {
+    margin-top: 66px;
+}
+
+.next{
+    margin-top: 172px;
+
+}
+
+@media screen
+ and (min-width: 768px) {
+    header img {
+        margin-top: 10px;
+        width: 400px;
+    }
+    .stats {
+        text-align: center;
+        font-size: 22px;
+    }
+    .quiz_box {
+        width: 450px;
+        height: 450px;
+        margin-bottom: 25px;
+    }
+    .question_box {
+        height: 300px;
+        width: 350px;
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+
+    .question_head {
+        font-size: 24px;
+        padding-left: 40px;
+    }
+
+    .answer_head {
+        font-size: 24px;
+        padding-left: 40px;
+    }
+
+    .result_text {
+        background-color: rgb(138, 150, 107); 
+        font-size: 22px;
+        padding-bottom: 10px; 
+    }
+
+    .result_img {
+        height: 230px;
+        width: 350px;
+        background-color: rgb(2, 48, 27);
+    }
+    .button {
+        margin-top: 20px;
+        width: 180px;
+        height: 50px;
+    }
+   .submit {
+       margin-top: 100px;
+       margin-left: 50px;
+       
+   }
+   .next {
+        margin-top: 180px;
+        margin-left: 50px; 
+   }
+ }
