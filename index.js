@@ -166,7 +166,7 @@ function quizResult() {
     if(score >= 7) {
         $('.quiz_box').html(
             `<section class="question_box">
-                <h3 class="result_text">You are rock!</h3>
+                <h3 class="result_text">You rock!</h3>
                 <p class="result_text">You scored ${score} points</p>
                 <img src="img/camel.jpg" alt="Happy girl with camel" class="result_img">
                 <button class="button restart">Restart</button> 
