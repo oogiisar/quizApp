@@ -62,7 +62,6 @@ let score = 0;
 
 function renderQuizApp() {
     if(questionNum < STORE.length) {
-        $('.restart').hide();
         return `<form class="question_box">
             <fieldset> 
                 <legend class="question_head">${STORE[questionNum].question}</legend>
@@ -200,8 +199,8 @@ function restartQuiz() {
 } 
 
 function quiz() {
+    $('.restart').hide();
     startQuiz();
-    renderQuizApp();
     handleButton();
     restartQuiz();
 }
